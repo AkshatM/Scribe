@@ -7,4 +7,4 @@ A Chrome extension that converts URLs to embedded images or to title text, like 
 
 # Front-End
 
-- A Javascript listener that either uses AJAX or can simply be invoked upon some user event (like (TeX for Gmail)[https://chrome.google.com/webstore/detail/tex-for-gmail/gjnmclkoadjdljnfmbnnhaahilafoeji?hl=en]). Upon invokation, the Javascript uses a regular expression to obtain all links in the text editor and dynamically replaces them once the server returns with the required information. 
+- A Javascript listener that either uses AJAX or can simply be invoked upon some user event (like [TeX for Gmail](https://chrome.google.com/webstore/detail/tex-for-gmail/gjnmclkoadjdljnfmbnnhaahilafoeji?hl=en)). Upon invokation, the Javascript uses a regular expression to obtain all links in the text editor and dynamically replaces them once the server returns with the required information. 
