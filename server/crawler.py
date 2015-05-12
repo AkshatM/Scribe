@@ -12,14 +12,20 @@ def crawler(pattern):
 
     print "Crawling the url: " + url
 
-    response = requests.get(url)
+    try:
 
-    if 'image' not in response.headers['content-type']:
-        soup = BeautifulSoup(requests.get(url).text) # object containing HTML page data
-        return soup.title.string
-    else:
-        image_type = response.headers['content-type'].split('/')[-1]
-        pass # still need to define logic
+        response = requests.get(url)
+
+        if 'image' not in response.headers['content-type']:
+            soup = BeautifulSoup(requests.get(url).text) # object containing HTML page data
+            return soup.title.string, response.headers['content-type']
+        else:
+            image_type = response.headers['content-type'].split('/')[-1]
+            return response.content, response.headers['content-type']
         
     # I'm using requests to handle a general purpose connection, and sockets to handle the actual default
     # connection I want with my Javascript listener. MAybe a more sensible configuration could be defined...
+
+    except:
+
+        return 'ERR'
