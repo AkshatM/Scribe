@@ -1,19 +1,19 @@
 from bs4 import BeautifulSoup
 import requests
-import threading
 import socket
 
-def crawler(url, socket_to_return):
+def crawler(url,socket_to_return):
     '''
     Handles the actual crawling. The parameter url is the target URL; socket_to_return specifies which socket to return to.
     '''
-    
-    soup = BeautifulSoup(requests.get(url)) # object containing HTML page data
+    print "Crawling the url: " + url
+
+    soup = BeautifulSoup(requests.get(url).text) # object containing HTML page data
 
     # I'm using requests to handle a general purpose connection, and sockets to handle the actual default
     # connection I want with my Javascript listener. MAybe a more sensible configuration could be defined...
     
-    socket_to_return.send(soup.title.contents)
+    socket_to_return.send(soup.title.string)
     socket_to_return.close() # closes the socket - this automatically makes my program require multiple connections
     # to handle more than one link. Maybe I should make it accept an array of URLs instead? Maybe employ JSON to handle
     # Javascript data?
@@ -31,6 +31,17 @@ if __name__== "__main__":
     sock.listen(5) # listens for five queued connections; maybe consider changing number in future?
 
     print "Your server has begun!"
+
+    while True:
+	try:
+            conn, address = sock.accept()
+	    received_url = conn.recv(4096)
+            crawler(received_url,conn)
+	except KeyboardInterrupt:
+	    print "Shutting down gracefully..."
+            sock.shutdown(SHUT_RDWR)
+	    sock.close()
+	    break    
 
     
 
