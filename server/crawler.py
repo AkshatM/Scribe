@@ -39,7 +39,7 @@ if __name__== "__main__":
             crawler(received_url,conn)
 	except KeyboardInterrupt:
 	    print "Shutting down gracefully..."
-            sock.shutdown(SHUT_RDWR)
+            sock.shutdown(socket.SHUT_RDWR)
 	    sock.close()
 	    break    
 
