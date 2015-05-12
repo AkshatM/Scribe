@@ -1,52 +1,25 @@
 from bs4 import BeautifulSoup
 import requests
-import socket
+import re
 
-def crawler(url,socket_to_return):
+def crawler(pattern):
     '''
-    Handles the actual crawling. The parameter url is the target URL; socket_to_return specifies which socket to return to.
+    Handles the actual crawling. The parameter url is the target URL. Does some input handling.
     '''
+    GRUBER_URLINTEXT_PAT = ur'(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?\xab\xbb\u201c\u201d\u2018\u2019]))' # taken from Kenneth Reitz' hypermark - identifies all URLs inside some text 
+
+    url = re.search(GRUBER_URLINTEXT_PAT,pattern).group(0)
+
     print "Crawling the url: " + url
 
-    soup = BeautifulSoup(requests.get(url).text) # object containing HTML page data
+    response = requests.get(url)
 
+    if 'image' not in response.headers['content-type']:
+        soup = BeautifulSoup(requests.get(url).text) # object containing HTML page data
+        return soup.title.string
+    else:
+        image_type = response.headers['content-type'].split('/')[-1]
+        pass # still need to define logic
+        
     # I'm using requests to handle a general purpose connection, and sockets to handle the actual default
     # connection I want with my Javascript listener. MAybe a more sensible configuration could be defined...
-    
-    socket_to_return.send(soup.title.string)
-    socket_to_return.close() # closes the socket - this automatically makes my program require multiple connections
-    # to handle more than one link. Maybe I should make it accept an array of URLs instead? Maybe employ JSON to handle
-    # Javascript data?
-
-    # This function has no way of determining images yet... let's be patient.
-    
-
-if __name__== "__main__":
-
-    host = "127.0.0.1"
-    port = 5000 # maybe one day change this to port 443, as part of improved security?
-
-    sock = socket.socket() # create a socket object
-    sock.bind((host,port)) # bind that sucker!
-    sock.listen(5) # listens for five queued connections; maybe consider changing number in future?
-
-    print "Your server has begun!"
-
-    while True:
-	try:
-            conn, address = sock.accept()
-	    received_url = conn.recv(4096)
-            crawler(received_url,conn)
-	except KeyboardInterrupt:
-	    print "Shutting down gracefully..."
-            sock.shutdown(socket.SHUT_RDWR)
-	    sock.close()
-	    break    
-
-    
-
-    
-
-    
-    
-
