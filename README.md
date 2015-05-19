@@ -1,5 +1,5 @@
 # RichTextGmail
-A Chrome extension that converts URLs to embedded images or to title text, like Quora's text editor. I'm doing this because it's fun, and I really want to improve system designs. _Work in progress_
+A Chrome extension that converts URLs to embedded images or to title text, like Quora's text editor. I'm doing this because it's fun, and I really want to improve system designs. Currently, the back-end only works on Python 2.7 - however, use of the 2to3 module should mitigate this.  _Work in progress_
 
 # Back-End
 
