@@ -16,7 +16,7 @@ def crawler(pattern):
     
     '''
 
-    GRUBER_URLINTEXT_PAT = ur'(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?\xab\xbb\u201c\u201d\u2018\u2019]))' # taken from Kenneth Reitz' hypermark - identifies all URLs inside some text 
+    GRUBER_URLINTEXT_PAT = re.compile(r'(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?\xab\xbb\u201c\u201d\u2018\u2019]))') # taken from Kenneth Reitz' hypermark - identifies all URLs inside some text 
 
     url = re.search(GRUBER_URLINTEXT_PAT,pattern).group(0) # finds all URLS in pattern
 

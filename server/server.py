@@ -2,7 +2,7 @@ import BaseHTTPServer as bhttp
 from urlparse import urlparse as parser
 from crawler import crawler
 
-port = 5000 # default port to use
+port = 8080 # default port to use
 
 '''Implements BaseHTTPServer that runs the crawler before responding to a GET request.
 
@@ -27,9 +27,13 @@ class Handler(bhttp.BaseHTTPRequestHandler):
             self.send_error(400)
 
 if __name__ == '__main__':
-    server = bhttp.HTTPServer(('localhost', port), Handler) #alter localhost to actual IP
+    server = bhttp.HTTPServer(('www.akshatm.com', port), Handler) #alter localhost to actual IP
     print('Starting server, use a KeyboardInterrupt to stop')
-    server.serve_forever()
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        server.server_close()
+        print("Server ended")
         
         
     
