@@ -28,7 +28,7 @@ class Handler(bhttp.BaseHTTPRequestHandler):
 
 if __name__ == '__main__':
     server = bhttp.HTTPServer(('localhost', port), Handler) #alter localhost to actual IP
-    print 'Starting server, use a KeyboardInterrupt to stop'
+    print('Starting server, use a KeyboardInterrupt to stop')
     server.serve_forever()
         
         
