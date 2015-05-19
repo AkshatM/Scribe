@@ -2,7 +2,7 @@ import BaseHTTPServer as bhttp
 from urlparse import urlparse as parser
 from crawler import crawler
 
-port = 5000
+port = 5000 # default port to use
 
 '''Implements BaseHTTPServer that runs the crawler before responding to a GET request.
 
