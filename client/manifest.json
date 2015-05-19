@@ -1,0 +1,17 @@
+{
+  // Required
+  "manifest_version": 1,
+  "name": "GQ",
+  "version": "1",
+
+  // Recommended
+  "default_locale": "en",
+  "description": "Converts raw URLS put into a Gmail composition window to either the images they point to or the title text of the page they point to. "
+
+  "content_scripts": [
+    {
+      "matches": ["https://mail.google.com/mail/u/0/#inbox?compose=new"],
+      "js": ["jquery.min.js", "listener.js"]
+    }
+  ],
+}
