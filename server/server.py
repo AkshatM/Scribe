@@ -26,6 +26,9 @@ class Handler(bhttp.BaseHTTPRequestHandler):
         else:
             self.send_error(400)
 
+    def log_message(self, format, *args):
+            pass
+
 if __name__ == '__main__':
     server = bhttp.HTTPServer(('www.akshatm.com', port), Handler) #alter localhost to actual IP
     print('Starting server, use a KeyboardInterrupt to stop')

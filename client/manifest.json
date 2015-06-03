@@ -13,8 +13,6 @@
     }
   ],
   "web_accessible_resources":[
-    "jquery.min.js",
-    "gmail.js",
     "listener.js"
   ]
 }
