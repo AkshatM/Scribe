@@ -1,0 +1,5 @@
+s-164-67-66-51.resnet.ucla.edu - - [30/May/2015 14:41:48] "GET /?http://www.youtube.com HTTP/1.1" 200 -
+s-164-67-66-51.resnet.ucla.edu - - [30/May/2015 14:41:48] code 400, message Bad Request
+s-164-67-66-51.resnet.ucla.edu - - [30/May/2015 14:41:48] "GET /favicon.ico HTTP/1.1" 400 -
+111.74.238.8 - - [30/May/2015 20:27:07] code 400, message Bad Request
+111.74.238.8 - - [30/May/2015 20:27:07] "GET /manager/html HTTP/1.1" 400 -

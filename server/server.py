@@ -1,6 +1,7 @@
 import BaseHTTPServer as bhttp
 from urlparse import urlparse as parser
 from crawler import crawler
+from SocketServer import ThreadingMixIn
 
 port = 8080 # default port to use
 
@@ -26,14 +27,22 @@ class Handler(bhttp.BaseHTTPRequestHandler):
         else:
             self.send_error(400)
 
+    def log_message(self, format, *args):
+        # uncomment following to enable logging into file. I want to save limited memory, so nothing should be logged.
+        #open('message.log', "a").write("%s - - [%s] %s\n" % (self.address_string(),self.log_date_time_string(),format%args))
+        return
+
+class ThreadedHTTPServer(ThreadingMixIn, bhttp.HTTPServer):
+    """Handle requests in a separate thread."""
+
 if __name__ == '__main__':
-    server = bhttp.HTTPServer(('www.akshatm.com', port), Handler) #alter localhost to actual IP
-    print('Starting server, use a KeyboardInterrupt to stop')
-    try:
-        server.serve_forever()
-    except KeyboardInterrupt:
-        server.server_close()
-        print("Server ended")
+    server = ThreadedHTTPServer(('www.akshatm.com', port), Handler) #alter localhost to actual IP
+    print('Starting server...')
+    #try:
+    server.serve_forever()
+    #except KeyboardInterrupt:
+    #    server.server_close()
+    #    print("Server ended")
         
         
     
