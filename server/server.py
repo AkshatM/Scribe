@@ -1,5 +1,6 @@
 import BaseHTTPServer as bhttp
 from urlparse import urlparse as parser
+from urlparse import parse_qs as query_parser
 from crawler import crawler
 from SocketServer import ThreadingMixIn
 
@@ -18,7 +19,8 @@ The class Handler allows me to define the GET response.'''
 class Handler(bhttp.BaseHTTPRequestHandler):        
 
     def do_GET(self):
-        requests_response = crawler(parser(self.path).query)
+        parse_object = query_parser(parser(self.path).query)['url'][0]
+        requests_response = crawler(parse_object)
         if requests_response != 'ERR':
             self.send_response(200)
             self.send_header("Content-type", requests_response[-1])
