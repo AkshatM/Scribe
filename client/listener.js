@@ -15,8 +15,11 @@ document.onkeyup = function (event) {
 
 function HTTPResponse(url){
    var xmlHttp = new XMLHttpRequest();
-   var native_url = "http://www.akshatm.com:8080/?"; // will not work because of mixed content restrictions
-   xmlHttp.open("GET",native_url+url);
+   var mashape_api_key = "9kXiCVHd85msh7Scl9CLKlBFDhU7p1YwgoWjsn9JtTN8RAGnF3"; // insecure, but this is fine: it's the only app on my application.
+   var native_url = "https://akshatm-richgmaileditor-v1.p.mashape.com/?url=";
+   xmlHttp.open("GET",native_url+url, false); //currently synchronous; must change to asynchronous
+   xmlHttp.setRequestHeader("X-Mashape-Key", mashape_api_key);
    xmlHttp.send();
+   console.log(xmlHttp.status);
    return xmlHttp.responseText;
 }
