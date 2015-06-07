@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-import re
+import base64
 
 def crawler(url):
     '''
@@ -22,7 +22,7 @@ def crawler(url):
             return soup.title.string.encode('utf-8'), response.headers['content-type'] #return title string, response headers
         else:
             image_type = response.headers['content-type'].split('/')[-1]
-            return response.content, response.headers['content-type'] # return image, response headers
+            return base64.b64encode(response.content), response.headers['content-type'] # return image in base 64, response headers
 
     except:
 
