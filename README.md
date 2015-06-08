@@ -20,10 +20,10 @@ The front-end component is nearing completion. It is able to recognise URLs with
 
 # Current Issues
 
-* The F2 can only be pressed in the document window - it will not work if focus is on the composition or reply window.
+* The F2 can only be pressed in the document window - it will not work if focus is on the composition or reply window. One should ideally focus on the compose or reply window that the user is on, and allow the application to affect that window.
 
-* There are no instructions available at the moment.
+* Use of this extension does not preserve page formatting. This is because of us assigning the result of an `innerText` replacement to `innerHTML`. However, iterating through `innerHTML` causes more problems since our regular expression is not configured to be smart. Using regex on HTML is bad in any case, which is why we stick to plain text instead.
 
-* The code *only* works for composition windows. One should ideally focus on the compose or reply window that the user is on, and allow the application to affect that window. 
+* Pressing F2 with existing hyperlinks or images in text changes existing hyperlinks. This is a fault in `listener.js` - particularly, we are essentially resetting the `innerHTML` to find all URLs and replace them with anchor tags, _even those that are already in anchor tags_. 
 
 Efforts are being made to resolve all of this.
