@@ -12,7 +12,7 @@ GET request from client is URL-encoded i.e. desired URL is passed as a field in 
 
 For instance, if I wanted to link to www.google.com, I could do:
 
-GET www.example.com:<port>/?https://www.google.com
+GET www.example.com:<port>/?url=https://www.google.com
 
 The class Handler allows me to define the GET response.'''
 
