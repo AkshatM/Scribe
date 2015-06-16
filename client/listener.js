@@ -11,10 +11,10 @@ document.onkeyup = function (event) {
                      var tag = new Autolinker.HtmlTag();
 		     if (final_value[1].indexOf("image") != -1){
 		        tag.setTagName('img');
-			tag.setAttr('src', 'data:'+final_value[1]+';base64,'+final_value[0]);}
+			tag.setAttr('src', match.getAnchorHref());}
 			else {
 			   tag.setTagName('a');
-			   tag.setAttr('href',final_value[0]);
+			   tag.setAttr('href',match.getAnchorHref());
 			   tag.setInnerHtml(final_value[0]);
 			}
 		     return tag;
