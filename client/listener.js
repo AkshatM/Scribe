@@ -3,23 +3,29 @@ document.onkeyup = function (event) {
       var compose_ids = Array.prototype.slice.call(document.getElementsByClassName("Am Al editable LW-avf va_ar"));//for compose windows
       var reply_ids = Array.prototype.slice.call(document.getElementsByClassName("Am a09 Al editable LW-avf va_ar"));//for reply windows
       var x = compose_ids.concat(reply_ids);
-      console.log(x);
-      var urlRegex = /(https?:\/\/[^\s]+)/g; // regular expression for matching URLS.
-      // This regex is bad, but that is alright - this is just a proof of concept for the moment.
       for (i = 0; i < x.length; i++){
-          // iterate through x[i] and match urls with  urlRegex
-	  x[i].innerHTML = x[i].innerText.replace(urlRegex, function(url){
-	      var final_value = HTTPResponse(url);
-	      if (final_value[1].indexOf("image") != -1){
-	         // embed image
-		 return '<img src = "data:'+final_value[1]+';base64,'+final_value[0]+'"/>'; // returns base64 encoded image.
-	         } else {
-	            return '<a href="' + url + '">' + final_value[0] + '</a>';
-	         }
-	      });
-	  }
-   };
-}
+          x[i].innerHTML = Autolinker.link(x[i].innerHTML,
+	      {
+	         replaceFn : function (autolinker, match) {
+		     var final_value = HTTPResponse(match.getAnchorHref());
+                     var tag = new Autolinker.HtmlTag();
+		     if (final_value[1].indexOf("image") != -1){
+		        tag.setTagName('img');
+			tag.setAttr('src', match.getAnchorHref());}
+			else {
+			   tag.setTagName('a');
+			   tag.setAttr('href',match.getAnchorHref());
+			   tag.setInnerHtml(final_value[0]);
+			}
+		     return tag;
+		 }
+          });
+      }
+   }
+} 
+
+
+
 
 function HTTPResponse(url){
    var xmlHttp = new XMLHttpRequest();
@@ -33,3 +39,4 @@ function HTTPResponse(url){
    }
    return [xmlHttp.responseText, xmlHttp.getResponseHeader("content-type")];
 }
+
