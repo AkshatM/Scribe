@@ -12,7 +12,7 @@ document.onkeyup = function (event) {
 		     if (final_value[1].indexOf("image") != -1){ 
 		     // if URL is of an image, then insert img tag with appropriate source
 		        tag.setTagName('img');
-			tag.setAttr('src', match.getAnchorHref();
+			tag.setAttr('src', match.getAnchorHref());
 			tag.setAttr('alt',match.getAnchorHref());
 		     } else {
 		       // otherwise, replace with human-readable hyperlink
