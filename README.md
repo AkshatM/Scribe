@@ -1,5 +1,5 @@
-# RichTextGmail
-A Chrome extension that converts raw text URLs in Gmail to embedded images or to friendly hyperlinks with page title text, like Quora's text editor. I'm doing this because it's fun, and I really want to improve system designs. Currently, the back-end only works on Python 2.7 - however, use of the 2to3 module should mitigate this.  _Work in progress_
+# Scribe
+A Chrome extension that converts raw text URLs in Gmail to embedded images or to friendly hyperlinks with page title text, like Quora's text editor. I'm doing this because it's fun, and I really want to improve system designs. 
 
 # Back-End
 
