@@ -1,13 +1,10 @@
 {
   // Required
   "manifest_version": 2,
-  "name": "GQ",
-  "version": "0.1",
-  "permissions": [
-      "https://github.com/"
-   ],
+  "name": "Scribe",
+  "version": "1.0",
 
-  "description": "Converts raw URLS put into a Gmail composition window to either the images they point to or the title text of the page they point to. ",
+  "description": "Converts raw URLS put into a Gmail composition window to either the images they point to or the title text of the page they point to. Just press F2! See akshatm.github.io/Scribe for more information.",
 
   "content_scripts": [
     {
@@ -18,5 +15,16 @@
   "web_accessible_resources":[
     "listener.js",
     "Autolinker.min.js"
-  ]
+  ],
+  "background": {
+      "scripts": ["background.js"]
+  },
+  "page_action": {
+    "default_icon": {
+      "19": "images/icon19.png"
+      },
+      "default_tile": "Scribe",
+      "default_popup": "popup.html"
+  }  
 }
+	                
