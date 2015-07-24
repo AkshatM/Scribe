@@ -26,7 +26,7 @@ class Handler(bhttp.BaseHTTPRequestHandler):
             self.send_header("Content-type", requests_response[-1])
             self.send_header("Access-Control-Allow-Origin", '*')
             self.end_headers()
-            self.wfile.write(requests_response[0]) // sends actual content to be displayed
+            self.wfile.write(requests_response[0]) # sends actual content to be displayed
         else:
             self.send_error(400)
 
