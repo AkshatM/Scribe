@@ -19,7 +19,7 @@ The class Handler allows me to define the GET response.'''
 class Handler(bhttp.BaseHTTPRequestHandler):        
 
     def do_GET(self):
-        parse_object = query_parser(parser(self.path).query)['url'][0] //gets URLs from query parameters
+        parse_object = query_parser(parser(self.path).query)['url'][0] #gets URLs from query parameters
         requests_response = crawler(parse_object)
         if requests_response != 'ERR':
             self.send_response(200)
