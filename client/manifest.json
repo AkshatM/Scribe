@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Scribe",
-  "version": "1.1",
+  "version": "1.2",
   "icons": { "128": "images/icon128.png"},
   "permissions": [
       "https://akshatm-richgmaileditor-v1.p.mashape.com/?url="
