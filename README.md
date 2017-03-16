@@ -1,6 +1,8 @@
 # Scribe
 A Chrome extension that converts raw text URLs in Gmail to embedded images or to friendly hyperlinks with page title text, like Quora's text editor. I'm doing this because it's fun, and I really want to improve system designs. 
 
+*This project is now effectively dead*
+
 # Back-End
 
 - A server that contains a Python crawler. On receipt of a URL, the crawler fetches the associated page and parses it for important human-readable information (a title tag or similar). If the URL points to an image file, it simply downloads the image. 
